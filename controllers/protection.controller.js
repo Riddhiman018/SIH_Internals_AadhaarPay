@@ -11,7 +11,7 @@ sgmail.setApiKey(sendGridKey)
 function alertAuthorities(req,res){
     //req params must contain operator_id and uid of client
     const msg = {
-        to:'janeprakeerth@gmail.com',
+        to:'malharsoham@gmail.com',
         from:'yorb999@gmail.com',
         subject:'Cash Corruption at Aadhaar Centre',
         text:'Cash Corruption reported by resident with uid: 98739485 at center: w34897',

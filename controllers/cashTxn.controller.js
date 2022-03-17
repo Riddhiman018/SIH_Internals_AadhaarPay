@@ -5,7 +5,7 @@ async function cashTxnController(req,res){
         var response_t = {}
         if(req.query.service === 'Biometrics'){
             response_t = {
-                Service:'biometrics',
+                Service:'Biometrics',
                 AmountToBePaid:'70',
                 UniqueCode:req.query.dob+String(Date.now()),
             }
@@ -54,6 +54,15 @@ async function OperatorCashTxnAmountView(req,res){
         const citizenUpdate = await firebaseApp.firestore().collection('Citizen').doc(`${citizen_uid}Txns`).collection('UpcomingTxns').doc(`${customer_booking_id}`).update({
             TxnStatus:"Done"
         })
+        //Move txn to prevTxn
+        const updatedCitizen = await firebaseApp.firestore().collection('Citizen').doc(`${citizen_uid}Txns`).collection('UpcomingTxns').doc(`${customer_booking_id}`).get()
+        const updatedCitizenData = updatedCitizen.data()
+        const moveTxnToPrevTxn = await firebaseApp.firestore().collection('Citizen').doc(`${citizen_uid}Txns`).collection('PrevTxns').doc(`${customer_booking_id}`).set({
+            updatedCitizenData
+        })
+        //delete from UpcomingTxns of citizen
+        const completedUpcomingBooking =await firebaseApp.firestore().collection('Citizen').doc(`${citizen_uid}Txns`).collection('UpcomingTxns').doc(`${customer_booking_id}`).delete()
+        //Operator: move to ArchivedTxns
         res.status(200).send({
             Message:"Updation Completed"
         })

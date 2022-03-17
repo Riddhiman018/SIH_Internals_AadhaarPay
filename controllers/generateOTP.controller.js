@@ -2,6 +2,9 @@ const twilio = require('twilio')
 const {firebaseApp} = require('../models/database.model')
 
 const twilioCreds = {
+
+    //SampleTwilioCreds
+
     // serviceID : "VAe3c25ddebe95e74633d67d58ebb097b6",
     // accountSID : "AC0d6146395bb5cf4840da991128a12475",
     // authToken : "37c4ad7152dca6ee2997c36c979bfc4a"
@@ -10,9 +13,9 @@ const twilioCreds = {
     // accountSID : "ACcdf6fd924cd03835b7d9e3f39fa5928e",
     // authToken : "08c102981fc01e08c5ed4873328069d4"
    
-    serviceID: "VA65f6e3eb99ff24dd71e5032ec24b1a20",
-    accountSID: "ACc43eae8b582b8cdfcbf03d8e1186aaf4",
-    authToken: "fe09117323879303465b5d3c431824e4"
+    // serviceID: "VA65f6e3eb99ff24dd71e5032ec24b1a20",
+    // accountSID: "ACc43eae8b582b8cdfcbf03d8e1186aaf4",
+    // authToken: "fe09117323879303465b5d3c431824e4"
 
     
     // serviceID: "VAa20b80ccd51469c56974464e55cb6191",

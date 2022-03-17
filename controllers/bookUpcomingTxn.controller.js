@@ -28,12 +28,20 @@ async function updateUpcomingTxns(req,res){
         }
         const upcomingTxnsCollection = await firebaseApp.firestore().collection('Citizen').doc(`${req.query.uid}Txns`).collection('UpcomingTxns').doc(uniqueBookingID).set(data)
         console.log(upcomingTxnsCollection)
+        var amountToBePaid = {}
+        if(req.body.Service=='Biometrics'){
+            amountToBePaid.pay = 70
+        }
+        else if(req.body.Service=='Demographics'){
+            amountToBePaid.pay = 100            
+        }
         const pendingTxnsOperator = await firebaseApp.firestore().collection('Operator').doc(`${req.body.OperatorID}Txns`).collection('PendingTxns').doc(uniqueBookingID).set({
             BookingID:uniqueBookingID,
             bookingDate:req.body.DateOfAppointment,
             CustomerUID:req.query.uid,
             CustomerName:citizenDetails.data().Name,
             Service:req.body.Service,
+            AmountToBePaid:amountToBePaid.pay
         })
         res.status(200).send({Upcoming:'Did Something'})
     }

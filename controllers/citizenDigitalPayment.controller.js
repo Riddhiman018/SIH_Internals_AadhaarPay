@@ -1,8 +1,8 @@
 const {firebaseApp} = require('../models/database.model')
 const Stripe = require('stripe')
 
-const stripePublishableKey = "pk_test_51KcrhYSEKHQrMKMmG3kTG1bEH7aZa7lMcuNgErUAiVkk4VhGxGMVvM9VNm9f51gBz2b1t9BvUQqrp6eS93fD5vJl00R8CEZayU"
-const stripeSecretKey = "sk_test_51KcrhYSEKHQrMKMm2bOFNrYsp2T2kSc2vjWxwzPpauyRjuPQNGkTlRwFbtEDEl8yq4gwQ1ugIjCyOuocninynbNY00echxqI3i"
+const stripePublishableKey = "pk_test_51KeOpASH36ERpDK3O9T1tAmGHoAxfkL1in8gwcwvgtccRPChUOjuKj6wey020XQj098XfMiFAeyihI9ro7tHc8oR00MASzHu0u"
+const stripeSecretKey = "sk_test_51KeOpASH36ERpDK3ao8P2FFILJptimaxtCRhmaV7WkoAYlGx1iZOlZxJzvosXsqRwVn05WqeWkkyL24zxaH2wUQh00OAGeSif6"
 
 
 const stripeClient = Stripe(stripeSecretKey)
@@ -43,7 +43,15 @@ async function updateDigitalPayment(req,res){
     const updateCitizen = await firebaseApp.firestore().collection('Citizen').doc(`${uid}Txns`).collection('UpcomingTxns').doc(`${booking_id}`).update({
         TxnStatus:"Done"
     })
-
+    //Now move this txn to PrevTxn of citizen
+    const updatedCitizen = await firebaseApp.firestore().collection('Citizen').doc(`${uid}Txns`).collection('UpcomingTxns').doc(`${booking_id}`).get()
+    const updatedCitizenData = updatedCitizen.data()
+    const moveToPrevTxn = await firebaseApp.firestore().collection('Citizen').doc(`${uid}Txns`).collection('PrevTxns').doc(`${booking_id}`).set({
+        updatedCitizenData
+    })
+    console.log(moveToPrevTxn)
+    const deleteUpdatedCitizen = await firebaseApp.firestore().collection('Citizen').doc(`${uid}Txns`).collection('UpcomingTxns').doc(`${booking_id}`).delete()
+    //Move this to ResolvedTxn of Operator
     res.send(`<!DOCTYPE html>
     <html lang="en">
     <head>
