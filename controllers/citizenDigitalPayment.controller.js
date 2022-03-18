@@ -2,9 +2,8 @@ const {firebaseApp} = require('../models/database.model')
 const Stripe = require('stripe')
 
 const stripePublishableKey = "pk_test_51KeOpASH36ERpDK3O9T1tAmGHoAxfkL1in8gwcwvgtccRPChUOjuKj6wey020XQj098XfMiFAeyihI9ro7tHc8oR00MASzHu0u"
-const stripeSecretKey = "sk_test_51KeOpASH36ERpDK3ao8P2FFILJptimaxtCRhmaV7WkoAYlGx1iZOlZxJzvosXsqRwVn05WqeWkkyL24zxaH2wUQh00OAGeSif6"
-
-
+const stripeSecretKey = "sk_test_51KcrhYSEKHQrMKMm2bOFNrYsp2T2kSc2vjWxwzPpauyRjuPQNGkTlRwFbtEDEl8yq4gwQ1ugIjCyOuocninynbNY00echxqI3i"
+//
 const stripeClient = Stripe(stripeSecretKey)
 
 async function digitalCheckout(req,res){
@@ -33,6 +32,7 @@ async function digitalCheckout(req,res){
         success_url:`https://sihpaymentapis.herokuapp.com/success?booking_id=${req.query.booking_id}&uid=${req.query.uid}&operator_id=${req.query.Operator_ID}`,
         cancel_url:'https://www.bing.com/?toWww=1&redig=5721A53EFDEA4A188A40C0AAFC26F9B0'
     })
+    console.log(session.url)
     res.redirect(301,session.url)
 }
 

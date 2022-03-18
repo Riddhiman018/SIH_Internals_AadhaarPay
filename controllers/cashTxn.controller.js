@@ -1,19 +1,30 @@
 const {firebaseApp} = require('../models/database.model')
 
+
+function generateRandomNumber() {
+    var minm = 100000;
+    var maxm = 999999;
+    return Math.floor(Math
+    .random() * (maxm - minm + 1)) + minm;
+}
+
+
 async function cashTxnController(req,res){
-    //requires citizen_uid,Operator_id,ServiceOpted,booking_id,dob
+    //requires citizen_uid,booking_id,
+    const Citizen = await firebaseApp.firestore().collection('Citizen').doc(`${req.query.uid}Txns`).collection('UpcomingTxns').doc(`${req.query.booking_id}`).get()
         var response_t = {}
-        if(req.query.service === 'Biometrics'){
+        if(Citizen.data().Service === 'Biometrics'){
             response_t = {
                 Service:'Biometrics',
                 AmountToBePaid:'70',
-                UniqueCode:req.query.dob+String(Date.now()),
+                UniqueCode:generateRandomNumber(),
+                Operator_ID:Citizen.data().OperatorID
             }
             const updateTxnMethodCitizen = await firebaseApp.firestore().collection('Citizen').doc(`${req.query.uid}Txns`).collection('UpcomingTxns').doc(`${req.query.booking_id}`).update({
                 isCashTxn:true,
                 CashTxnValue: response_t.AmountToBePaid
             })
-            const updateTxnDetailsOperator_1 = await firebaseApp.firestore().collection('Operator').doc(`${req.query.Operator_id}Txns`).collection('PendingTxns').doc(`${req.query.booking_id}`).update({
+            const updateTxnDetailsOperator_1 = await firebaseApp.firestore().collection('Operator').doc(`${response_t.Operator_ID}Txns`).collection('PendingTxns').doc(`${req.query.booking_id}`).update({
                 AmountToBePaid:response_t.AmountToBePaid,
                 CashTxnID:response_t.UniqueCode
             })
@@ -22,13 +33,14 @@ async function cashTxnController(req,res){
             response_t = {
                 Service:'Demographics',
                 AmountToBePaid:'100',
-                UniqueCode:req.query.dob+String(Date.now()),
+                UniqueCode:generateRandomNumber(),
+                Operator_ID:Citizen.data().OperatorID
             }
             const updateTxnMethodCitizen = await firebaseApp.firestore().collection('Citizen').doc(`${req.query.uid}Txns`).collection('UpcomingTxns').doc(`${req.query.booking_id}`).update({
                 isCashTxn:true,
                 CashTxnValue: response_t.AmountToBePaid
             })
-            const updateTxnDetailsOperator_1 = await firebaseApp.firestore().collection('Operator').doc(`${req.query.Operator_id}Txns`).collection('PendingTxns').doc(`${req.query.booking_id}`).update({
+            const updateTxnDetailsOperator_1 = await firebaseApp.firestore().collection('Operator').doc(`${response_t.Operator_ID}Txns`).collection('PendingTxns').doc(`${req.query.booking_id}`).update({
                 AmountToBePaid:response_t.AmountToBePaid,
                 CashTxnID:response_t.UniqueCode
             })

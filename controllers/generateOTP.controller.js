@@ -21,6 +21,12 @@ const twilioCreds = {
     // serviceID: "VAa20b80ccd51469c56974464e55cb6191",
     // accountSID: "AC8b01869c1d0419cedc19244ffadac037",
     // authToken: "8f005b8942703dd91bb6a0b25c7dea04"
+
+    serviceID: "VAe3c25ddebe95e74633d67d58ebb097b6",
+    accountSID: "AC0d6146395bb5cf4840da991128a12475",
+    authToken: "52d6a88344b69f3c835257f52944bea4"
+
+    
 }
 var phNo = ''
 function generateOTP(req,res){
@@ -38,6 +44,8 @@ function generateOTP(req,res){
             }
         ).then(res=>{
             console.log(res)
+        }).catch(e=>{
+            console.log(e)
         })
         res.status(200).send({Message:"Sent Request"})
     }
@@ -61,7 +69,7 @@ async function verifyOTP(req,res){
         citizenArray.forEach((doc)=>{
             docID = doc.id
             console.log(doc.data())
-            console.lod("Hello")
+            console.log("Hello")
         })
         OTPverification_status = OTPverification_response.status
         console.log(docID)
