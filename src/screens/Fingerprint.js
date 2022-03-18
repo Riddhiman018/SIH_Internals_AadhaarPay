@@ -21,7 +21,21 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import PaymentScreen from './PaymentScreen';
 
-const FingerPrint = () => {
+const FingerPrint = ({navigation}) => {
+  function handleBackButtonClick() {
+    navigation.navigate('Home');
+    return true;
+  }
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
+    return () => {
+      BackHandler.removeEventListener(
+        'hardwareBackPress',
+        handleBackButtonClick,
+      );
+    };
+  }, []);
   const isDarkMode = useColorScheme() === 'dark';
   const [isAuth, setIsAuth] = useState(false);
 
@@ -56,11 +70,10 @@ const FingerPrint = () => {
         }
         TouchID.authenticate('', optionalConfigObject)
           .then(success => {
-            Alert.alert('Woah You made it');
             setIsAuth(true);
           })
           .catch(err => {
-            BackHandler.exitApp();
+            BackHandler.goBack();
           });
       }
     });

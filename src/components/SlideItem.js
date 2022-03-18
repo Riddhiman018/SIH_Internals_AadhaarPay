@@ -33,9 +33,12 @@ const styles = StyleSheet.create({
     left: 5,
   },
   image: {
-    width: width - 20,
-    height: height / 3,
+    width: 350,
+    height: 150,
     borderRadius: 10,
+    backgroundColor: 'white',
+    marginLeft: 20,
+    resizeMode: 'contain',
   },
   itemTitle: {
     color: 'white',

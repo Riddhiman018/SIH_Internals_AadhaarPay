@@ -48,6 +48,8 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.textProp}>
         <Text
           style={{
+            justifyContent: 'center',
+            alignItems: 'center',
             textAlign: 'center',
             width: 94,
             height: 42,
@@ -61,6 +63,8 @@ const HomeScreen = ({navigation}) => {
         </Text>
         <Text
           style={{
+            justifyContent: 'center',
+            alignItems: 'center',
             textAlign: 'center',
             width: 94,
             height: 42,
@@ -74,6 +78,8 @@ const HomeScreen = ({navigation}) => {
         </Text>
         <Text
           style={{
+            alignItems: 'center',
+            justifyContent: 'center',
             textAlign: 'center',
             width: 94,
             height: 42,
@@ -87,10 +93,12 @@ const HomeScreen = ({navigation}) => {
         </Text>
         <Text
           style={{
+            alignItems: 'center',
+            justifyContent: 'center',
             textAlign: 'center',
             width: 94,
             height: 42,
-            left: 20,
+            left: 35,
             top: 5,
             color: 'white',
             fontFamily: 'Poppins',

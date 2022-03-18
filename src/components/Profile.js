@@ -8,7 +8,6 @@ const Profile = ({data}) => {
       <FlatList
         data={data}
         keyExtractor={(item, index) => 'key' + index}
-        horizontal
         renderItem={({item}) => {
           return <ProfileItem item={item} />;
         }}

@@ -28,22 +28,22 @@ export function InputOTPScreen({navigation}) {
   });
 
   const verifyOtp = () => {
-    // fetch(`https://sihpaymentapis.herokuapp.com/verifyOTP?code=${internalVal}`)
+    fetch(`https://sihpaymentapis.herokuapp.com/verifyOTP?code=${internalVal}`);
     navigation.navigate('Home');
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data);
-    //     if (data.Message == 'Verified') {
-    //       navigation.navigate('Home');
-    //       console.log('pressed');
-    //     } else {
-    //       Alert.alert('Invalid OTP');
-    //       navigation.navigate('Authentication');
-    //     }
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    // .then(res => res.json())
+    // .then(data => {
+    //   console.log(data);
+    //   if (data.Message == 'Verified') {
+    //     navigation.navigate('Home');
+    //     console.log('pressed');
+    //   } else {
+    //     Alert.alert('Invalid OTP');
+    //     navigation.navigate('Authentication');
+    //   }
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
   };
 
   const decrementClock = () => {
@@ -157,6 +157,7 @@ export function InputOTPScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'white',
   },
 
   containerAvoiddingView: {
@@ -164,7 +165,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   titleStyle: {
-    marginTop: 50,
+    marginTop: 80,
     marginBottom: 50,
     fontSize: 16,
     color: 'black',

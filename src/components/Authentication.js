@@ -33,6 +33,7 @@ export function Authentication({navigation}) {
     fetch(
       `https://sihpaymentapis.herokuapp.com/generateOTP?phoneNumber=${phonenumber}`,
     )
+      .then(res => res.json())
       .then(data => {
         console.log(data);
       })

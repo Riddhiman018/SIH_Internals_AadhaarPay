@@ -11,6 +11,9 @@ import {Authentication} from './src/components/Authentication';
 import BookAppointment from './src/components/BookAppointment';
 import Fingerprint from './src/screens/Fingerprint';
 import PaymentScreen from './src/screens/PaymentScreen';
+import UpcomingAppointment from './src/screens/UpcomingAppointment';
+import OverCharging from './src/screens/OverCharging';
+import {useBackHandler} from '@react-native-community/hooks';
 
 const Stack = createNativeStackNavigator();
 
@@ -42,8 +45,18 @@ function App() {
               <Button
                 icon="logout"
                 onPress={() => {
-                  Alert.alert('Are you sure you want to logout?');
-                  navigation.navigate('Authentication');
+                  Alert.alert('', 'Are you sure you want to logout?', [
+                    {
+                      text: 'No',
+                      onPress: () => null,
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'Yes',
+                      onPress: () => navigation.navigate('Authentication'),
+                    },
+                  ]);
+                  return true;
                 }}
                 labelStyle={{fontSize: 30}}
                 color="black"
@@ -54,7 +67,24 @@ function App() {
         <Stack.Screen
           name="InputOTP"
           component={InputOTPScreen}
-          options={{title: 'Input OTP', headerShown: false}}
+          options={({navigation}) => ({
+            headerLeft: () => (
+              <Button
+                onPress={() =>
+                  navigation.navigate('Authentication', {
+                    screen: 'Authentication',
+                  })
+                }
+                icon="arrow-left"
+                labelStyle={{fontSize: 30, marginRight: 180}}
+                color="black"
+              />
+            ),
+            headerTitle: props => <LogoTitle {...props} />,
+            headerBackVisible: false,
+            headerTintColor: 'white',
+            headerTransparent: true,
+          })}
         />
         <Stack.Screen
           name="Book"
@@ -69,7 +99,35 @@ function App() {
         <Stack.Screen
           name="Pay"
           component={PaymentScreen}
-          options={{title: 'Payment', headerTintColor: 'blue'}}
+          options={{
+            title: 'Payment',
+            headerTintColor: 'white',
+            headerStyle: {
+              backgroundColor: '#2D55BB',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Upcoming"
+          component={UpcomingAppointment}
+          options={{
+            title: 'Upcoming Appointment',
+            headerTintColor: 'white',
+            headerStyle: {
+              backgroundColor: '#2D55BB',
+            },
+          }}
+        />
+        <Stack.Screen
+          name="Over"
+          component={OverCharging}
+          options={{
+            title: 'Cash Payment',
+            headerTintColor: 'white',
+            headerStyle: {
+              backgroundColor: '#2D55BB',
+            },
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -32,13 +32,16 @@ const HomeIcon = ({navigation}) => {
             onPress={() => {
               navigation.navigate('Finger');
             }}
-            icon="calendar-month"
+            icon="contactless-payment"
             labelStyle={{fontSize: 50, marginLeft: 5}}
             color="white"
             style={styles.icon}></Button>
 
           <Button
-            icon="calendar-month"
+            onPress={() => {
+              navigation.navigate('Upcoming');
+            }}
+            icon="calendar-alert"
             labelStyle={{fontSize: 50, marginLeft: 5}}
             color="white"
             style={styles.icon}></Button>
@@ -46,7 +49,7 @@ const HomeIcon = ({navigation}) => {
             onPress={() => {
               navigation.navigate('');
             }}
-            icon="calendar-month"
+            icon="history"
             labelStyle={{fontSize: 50, marginLeft: 5}}
             color="white"
             style={styles.icon}></Button>
