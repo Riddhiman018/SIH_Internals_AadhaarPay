@@ -1,4 +1,4 @@
-# SIH_Internals_AadhaarPayt
+# SIH_Internals_AadhaarPay
 
 # Description
 --To create a Digital payment solution for Aadhaar card holders to update their aadhaar details like biometrics and demographics. This solves the problem of overcharging 
