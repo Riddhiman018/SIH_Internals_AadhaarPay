@@ -44,6 +44,6 @@ Anish Parkhi(I-year,Software Engineering)
 Gowshik Ram(I-year, Electronics and Computer Engineering)
 
 # Special Thanks to our mentors:
-Dr. Kayalvizhi Jayavel
-Mr. Soham Dixit
-Mr. Shwet Mishra
+--Dr. Kayalvizhi Jayavel
+--Mr. Soham Dixit
+--Mr. Shwet Mishra
