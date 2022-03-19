@@ -34,3 +34,16 @@ Cash Payment Mechanism - https://www.youtube.com/watch?v=3wT7P3s8GSU
 
 Server Code branch: ServerRiddhiman
 AppCode: frontend/malhar
+
+# Team members:
+Riddhiman Bhattacharya(II-year, IT)
+Shivmalhar Dixit(II-year, IT)
+Dimple Singhvi(II-year, IT)
+Naman Sharma(II-year, IT)
+Anish Parkhi(I-year,Software Engineering)
+Gowshik Ram(I-year, Electronics and Computer Engineering)
+
+# Special Thanks to our mentors:
+Dr. Kayalvizhi Jayavel
+Mr. Soham Dixit
+Mr. Shwet Mishra
